@@ -24,7 +24,7 @@ function doFrame(index = 1) {
 
         let string = "";
 
-        const symbols = "⠀⠃⠇⠏⠟⠿";
+        const symbols = "01";
 
         let widthCounter = 0;
         for (let i = 0; i < pixels.data.length; i += 4) {
@@ -32,8 +32,8 @@ function doFrame(index = 1) {
             value = Math.max(pixels.data[i], pixels.data[i + 1], pixels.data[i + 2]);
 
             // string += getCharacterForGrayScale(value) + getCharacterForGrayScale(value);
-            const index = Math.floor(value / (256 / 6));
-            string += symbols[index].repeat(2);
+            const index = Math.floor(value / (256 / 2));
+            string += symbols[index];
 
             widthCounter++;
             if (widthCounter === 16) {
@@ -54,7 +54,8 @@ function doFrame(index = 1) {
 
         console.log(index);
 
-        doFrame(index + 1);
+        // 2 fps
+        doFrame(index + 15);
     });
 }
 

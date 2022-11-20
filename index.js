@@ -29,37 +29,26 @@ function run() {
 
         
         let result = "";
-        for(var i = 0; i < frames.length; i += 1) {
+        // 1 fps
+        for(var i = 0; i < frames.length; i += 30) {
             const frame = frames[i];
-            result += "Array(";
 
             let decom = decompressFrame(frame);
-            let chars = decom.split("\n").join("").split("");
-
-            var current = 2;
-            var counter = 0;
-            for (const char of chars) {
+            for (const char of decom) {
+                if (char == "\n") {
+                    result += char;
+                    continue;
+                }
                 var c = 1;
-                if (char === "⠀") {
+                if (char === '⠀') {
                     c = 0;
                 }
-
-                if (c === current) {
-                    counter += 1;
-                }
-                else {
-                    if (current !== 2) {
-                        result += current.toString() + "," + counter.toString() + ",";
-                    }
-                    counter = 1;
-                    current = c;
-                }
+                result += c;
             }
-            result += current.toString() + "," + counter.toString();
-            result += "),\n";
+            result += "\n";
         }
-        //process.stdout.write(result);
-        let index = 0;
+        process.stdout.write(result);
+        /*let index = 0;
         const startTime = Date.now();
         gameloop.setGameLoop((delta) => {
             if(frames[index] === undefined) {
@@ -75,6 +64,6 @@ function run() {
             );
 
             index++;
-        }, 1000 / 30);
+        }, 1000 / 30);*/
     });
 }
