@@ -27,10 +27,9 @@ function run() {
 
         let frames = data.split("\n\n");
 
-        let index = 0;
-        const startTime = Date.now();
+        
         let result = "";
-        for(var i = 0; i < frames.length; i += 10) {
+        for(var i = 0; i < frames.length; i += 1) {
             const frame = frames[i];
             result += "Array(";
 
@@ -59,9 +58,13 @@ function run() {
             result += current.toString() + "," + counter.toString();
             result += "),\n";
         }
-        process.stdout.write(result);
-
-        /*gameloop.setGameLoop((delta) => {
+        //process.stdout.write(result);
+        let index = 0;
+        const startTime = Date.now();
+        gameloop.setGameLoop((delta) => {
+            if(frames[index] === undefined) {
+                return;
+            }
             let string = decompressFrame(frames[index]);
 
             readline.clearLine(process.stdout, -1);
@@ -72,6 +75,6 @@ function run() {
             );
 
             index++;
-        }, 1000 / 30);*/
+        }, 1000 / 30);
     });
 }

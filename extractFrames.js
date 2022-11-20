@@ -9,7 +9,7 @@ try {
     ffmpeg("res/BadApple.mp4").then(
         (video) => {
             console.log("Processing Video...");
-            video.setVideoSize("30x22");
+            video.setVideoSize("16x12");
             video.save("frames/BadApple%04d.png", (error, file) => {
                 if (error) console.log(error);
                 else console.log("Video has been processed!");

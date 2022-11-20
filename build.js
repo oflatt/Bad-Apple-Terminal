@@ -36,7 +36,7 @@ function doFrame(index = 1) {
             string += symbols[index].repeat(2);
 
             widthCounter++;
-            if (widthCounter === 30) {
+            if (widthCounter === 16) {
                 widthCounter = 0;
                 string += "\n";
             }
