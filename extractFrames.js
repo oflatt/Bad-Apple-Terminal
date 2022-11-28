@@ -1,15 +1,17 @@
 const ffmpeg = require("ffmpeg");
 const fs = require("fs");
 
-if (!fs.existsSync("./frames")) {
-    fs.mkdirSync("./frames");
+if (fs.existsSync("./frames")) {
+    fs.rmdirSync("./frames", { recursive: true });
 }
 
+fs.mkdirSync("./frames");
+
 try {
-    ffmpeg("res/BadApple.mp4").then(
+    ffmpeg("../Videos/badapplesync.mp4").then(
         (video) => {
             console.log("Processing Video...");
-            video.setVideoSize("16x12");
+            video.setVideoSize("32x24");
             video.save("frames/BadApple%04d.png", (error, file) => {
                 if (error) console.log(error);
                 else console.log("Video has been processed!");
